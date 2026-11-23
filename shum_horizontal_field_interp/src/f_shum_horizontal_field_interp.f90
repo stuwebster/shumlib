@@ -605,7 +605,8 @@ DO i=1, points
   ! If we only have 1 row then we need to make sure we can cope.
   b = ABS(phi_srce(iy(i))-phi_srce(MIN(iy(i)+1,points_phi_srce)))
   IF (b /= 0.0_shum_real64) THEN
-    b = MAX(phi_targ(i)-phi_srce(iy(i)),0.0_shum_real64)/b
+    !b = MAX(phi_targ(i)-phi_srce(iy(i)),0.0_shum_real64)/b
+    b = MIN(MAX(phi_targ(i)-phi_srce(iy(i)),0.0_shum_real64)/b,1.0_shum_real64)
   ELSE
     b = 0.0_shum_real64
   END IF
